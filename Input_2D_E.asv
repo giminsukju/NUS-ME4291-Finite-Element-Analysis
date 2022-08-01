@@ -1,0 +1,28 @@
+function E = Input_2D_E(X,Y,u,n,k_mode,node_1, node_2, node_3, node_4)
+
+
+
+if k_mode == 1
+    E = 70e+9;
+elseif k_mode == 2
+    
+n1 = node_1 *2;
+    n2 = node_2 *2;
+    n3 = node_3 *2;
+    n4 = node_4 *2;
+    ux = u(n1 -1, n2-1, n3-1, n4-1);
+    uy = u(n1, n2, n3, n4);
+    
+    strainx = ux/10;
+    strainy = uy/2;
+    
+    strain_avg = (mean(strainx,'all') + mean(strainy,'all'))/2
+    
+    %assumption that overall length is not changed massively 
+    E = 70e+9*strain_avg^(n-1) % E is now not a single variable, but a vector the same size as the number of nodes
+
+%  Returns the Young's modulus for subsequent displacement 
+
+
+
+end
